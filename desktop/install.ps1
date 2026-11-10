@@ -13,7 +13,7 @@ foreach ($file in $settings.driveIcons.Values) {
     if (-not (Test-Path -LiteralPath (Join-Path $PSScriptRoot "icons/$file"))) { throw "Missing drive icon: $file" }
 }
 if ($WhatIfPreference) {
-    Write-Host "Would apply desktop auto-arrange/grid settings and install cursor/drive icons into $destination."
+    Write-Host "Would apply desktop auto-arrange/grid settings, cursor/drive icons, and Explorer small/large icon styling into $destination."
     return
 }
 
@@ -69,10 +69,11 @@ foreach ($drive in $fixedDrives) {
     $letter = $drive.Name.Substring(0, 1)
     $file = if ($letter -eq $systemLetter) { $settings.driveIcons.system } else { $settings.driveIcons.fixed }
     $expected = Join-Path $destination "icons/$file"
-    [WindowsDotfiles.DesktopNative]::RefreshDriveIcon($drive.Name)
-    $actual = [WindowsDotfiles.DesktopNative]::GetDriveIconLocation($drive.Name)
+    [WindowsDotfiles.DesktopNative]::RefreshItem($drive.Name)
+    $actual = [WindowsDotfiles.DesktopNative]::GetIconLocation($drive.Name)
     if (-not [string]::Equals($actual, $expected, [StringComparison]::OrdinalIgnoreCase)) {
         throw "Explorer still resolves $($drive.Name) to '$actual' instead of '$expected'."
     }
 }
+& (Join-Path $PSScriptRoot 'explorer.ps1')
 Write-Host 'Desktop: auto-arranged icons, saved cursor, and Fluent drive icons applied.'

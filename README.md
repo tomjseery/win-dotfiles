@@ -1,4 +1,4 @@
-# Windows dotfiles
+# win-dotfiles
 
 Personal Windows 10 configuration, split into independently installable modules.
 Each folder owns its settings, assets and PowerShell installer.
@@ -9,6 +9,8 @@ desktop/
   settings.json           desktop preferences and cursor role mapping
   cursors/                saved Modern Office Pro cursor files
   icons/                  Windows 11 drive icons
+  explorer.ps1            small Windows 11 icons, large blue icons, clean folders
+  folders/                size-specific folder icon variants
 taskbar/
   install.ps1             ExplorerPatcher and TranslucentTB
   TranslucentTB.cfg       existing centered, translucent taskbar appearance
