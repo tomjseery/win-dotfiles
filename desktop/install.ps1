@@ -55,7 +55,7 @@ foreach ($drive in $fixedDrives) {
     $letter = $drive.Name.Substring(0, 1)
     $file = if ($letter -eq $systemLetter) { $settings.driveIcons.system } else { $settings.driveIcons.fixed }
     $icon = Join-Path $destination "icons/$file"
-    $key = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\DriveIcons\$letter\DefaultIcon"
+    $key = "HKCU:\Software\Classes\Applications\Explorer.exe\Drives\$letter\DefaultIcon"
     New-Item -Path $key -Force | Out-Null
     Set-Item -LiteralPath $key -Value ('"{0}",0' -f $icon)
 }
@@ -65,4 +65,14 @@ if (-not ('WindowsDotfiles.DesktopNative' -as [type])) {
 }
 if (-not [WindowsDotfiles.DesktopNative]::ReloadCursors()) { throw 'Windows could not reload the saved cursor scheme.' }
 [WindowsDotfiles.DesktopNative]::RefreshIcons()
+foreach ($drive in $fixedDrives) {
+    $letter = $drive.Name.Substring(0, 1)
+    $file = if ($letter -eq $systemLetter) { $settings.driveIcons.system } else { $settings.driveIcons.fixed }
+    $expected = Join-Path $destination "icons/$file"
+    [WindowsDotfiles.DesktopNative]::RefreshDriveIcon($drive.Name)
+    $actual = [WindowsDotfiles.DesktopNative]::GetDriveIconLocation($drive.Name)
+    if (-not [string]::Equals($actual, $expected, [StringComparison]::OrdinalIgnoreCase)) {
+        throw "Explorer still resolves $($drive.Name) to '$actual' instead of '$expected'."
+    }
+}
 Write-Host 'Desktop: auto-arranged icons, saved cursor, and Fluent drive icons applied.'

@@ -10,6 +10,10 @@ at that stable location. The repository can move without breaking those paths.
 Cursor size stays at 32. System and other fixed drives get separate icons;
 drive letters are discovered rather than hardcoded.
 
+Drive overrides use `HKCU\Software\Classes\Applications\Explorer.exe\Drives`.
+After refreshing each drive, the installer asks the Windows Shell for its actual
+icon location and refuses to report success if it still resolves the old icon.
+
 Run as the logged-in desktop user:
 
 ```powershell
