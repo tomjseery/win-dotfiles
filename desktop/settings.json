@@ -1,0 +1,29 @@
+{
+    "autoArrange": true,
+    "snapToGrid": true,
+    "cursor": {
+        "name": "Modern Office Pro",
+        "baseSize": 32,
+        "roles": {
+            "Arrow": "aero_arrow.cur",
+            "Help": "aero_helpsel.cur",
+            "AppStarting": "aero_working.ani",
+            "Wait": "aero_busy.ani",
+            "Crosshair": "aero_cross.cur",
+            "IBeam": "aero_text.cur",
+            "NWPen": "aero_pen.cur",
+            "No": "aero_unavail.cur",
+            "SizeNS": "aero_ns.cur",
+            "SizeWE": "aero_ew.cur",
+            "SizeNWSE": "aero_nwse.cur",
+            "SizeNESW": "aero_nesw.cur",
+            "SizeAll": "aero_move.cur",
+            "UpArrow": "aero_up.cur",
+            "Hand": "aero_link.cur"
+        }
+    },
+    "driveIcons": {
+        "system": "drive-system.ico",
+        "fixed": "drive-fixed.ico"
+    }
+}

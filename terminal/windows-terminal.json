@@ -1,0 +1,58 @@
+{
+    "profiles": {
+        "defaults": {
+            "colorScheme": "Graphite",
+            "useAcrylic": false,
+            "opacity": 100,
+            "padding": "12, 10",
+            "scrollbarState": "hidden",
+            "font": {
+                "face": "Cascadia Mono",
+                "size": 12
+            }
+        }
+    },
+    "schemes": [
+        {
+            "name": "Graphite",
+            "background": "#222222",
+            "foreground": "#EEEEEE",
+            "cursorColor": "#EEEEEE",
+            "selectionBackground": "#383838",
+            "black": "#202020",
+            "red": "#CF8585",
+            "green": "#A3B895",
+            "yellow": "#C8B58C",
+            "blue": "#93A7BD",
+            "purple": "#B3A0BA",
+            "cyan": "#92B5B5",
+            "white": "#EEEEEE",
+            "brightBlack": "#858585",
+            "brightRed": "#E29B9B",
+            "brightGreen": "#B8CBA9",
+            "brightYellow": "#DDC9A0",
+            "brightBlue": "#AABFD5",
+            "brightPurple": "#C9B5D0",
+            "brightCyan": "#A8CCCC",
+            "brightWhite": "#EEEEEE"
+        }
+    ],
+    "theme": "Graphite",
+    "themes": [
+        {
+            "name": "Graphite",
+            "window": {
+                "applicationTheme": "dark"
+            },
+            "tabRow": {
+                "background": "#202020",
+                "unfocusedBackground": "#202020"
+            },
+            "tab": {
+                "background": "#303030",
+                "unfocusedBackground": "#202020",
+                "showCloseButton": "hover"
+            }
+        }
+    ]
+}
