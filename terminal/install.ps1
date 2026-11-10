@@ -33,7 +33,9 @@ $fragment = Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot 'windows-term
 $storeSettings = Join-Path $env:LOCALAPPDATA 'Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'
 $unpackagedSettings = Join-Path $env:LOCALAPPDATA 'Microsoft/Windows Terminal/settings.json'
 $settingsPath = if (Test-Path -LiteralPath $storeSettings) { $storeSettings } elseif (Test-Path -LiteralPath $unpackagedSettings) { $unpackagedSettings } else { $storeSettings }
-$settings = if (Test-Path -LiteralPath $settingsPath) { Get-Content -Raw -LiteralPath $settingsPath | ConvertFrom-Json -AsHashtable } else { [ordered]@{} }
+$rawSettings = if (Test-Path -LiteralPath $settingsPath) { Get-Content -Raw -LiteralPath $settingsPath } else { '' }
+$settings = if ([string]::IsNullOrWhiteSpace($rawSettings)) { [ordered]@{} } else { $rawSettings | ConvertFrom-Json -AsHashtable }
+if ($settings -isnot [Collections.IDictionary]) { throw 'Windows Terminal settings must be a JSON object.' }
 if (-not $settings.Contains('profiles')) { $settings.profiles = [ordered]@{} }
 if (-not $settings.profiles.Contains('defaults')) { $settings.profiles.defaults = [ordered]@{} }
 $defaults = $settings.profiles.defaults
@@ -44,7 +46,7 @@ foreach ($key in $fragment.profiles.defaults.Keys) {
     } else { $defaults[$key] = $fragment.profiles.defaults[$key] }
 }
 foreach ($collection in @('schemes', 'themes')) {
-    $settings[$collection] = @($settings[$collection] | Where-Object { $_.name -ne 'Graphite' }) + @($fragment[$collection])
+    $settings[$collection] = @($settings[$collection] | Where-Object { $null -ne $_ -and $_.name -ne 'Graphite' }) + @($fragment[$collection])
 }
 $settings.theme = $fragment.theme
 Write-ManagedText -Path $settingsPath -Text (($settings | ConvertTo-Json -Depth 100) + [Environment]::NewLine)
