@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace WindowsDotfiles
 {
-    public static class DesktopNative
+    public static class DesktopNativeV2
     {
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
