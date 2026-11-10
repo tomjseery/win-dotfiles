@@ -27,3 +27,7 @@ remain intact. Changed files are backed up under
 This fragment contains only appearance settings; machine-specific profiles,
 account state and credentials are not copied into the repository.
 Neovim owns its own colour configuration separately.
+
+Run `./tests/terminal-install.ps1` to verify fresh, empty, existing and malformed
+settings in temporary folders. The checks preserve unrelated preferences and
+verify byte-stable reinstalls without changing the workstation's configuration.
