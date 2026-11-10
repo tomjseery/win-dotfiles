@@ -33,6 +33,11 @@ and larger. This changes small icons, including the sidebar and Details view;
 it is a size-based distinction rather than a sidebar-only setting. At high DPI,
 the sidebar can request larger frames and therefore use the blue artwork.
 
+Small-frame directory entries explicitly declare their actual 32-bit colour
+depth. Otherwise Windows can prefer a larger 32-bit blue frame over a small
+frame with unspecified depth. Asset paths include a content fingerprint so
+Explorer does not reuse a previous version's cached images.
+
 Desktop, Downloads, Documents, Pictures, Music and Videos use per-user
 `Software\Classes\CLSID` overrides. Other folders keep their existing small blue
 icons. Personal folders and their
