@@ -38,18 +38,18 @@ namespace WindowsDotfiles
             SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
         }
 
-        public static void RefreshDriveIcon(string drive)
+        public static void RefreshItem(string path)
         {
             // SHCNE_UPDATEITEM with a Unicode path, flushed before verification.
-            SHChangeNotify(0x00002000, 0x00001005, drive, IntPtr.Zero);
+            SHChangeNotify(0x00002000, 0x00001005, path, IntPtr.Zero);
         }
 
-        public static string GetDriveIconLocation(string drive)
+        public static string GetIconLocation(string path)
         {
             ShellFileInfo info;
             // SHGFI_ICONLOCATION asks the Shell which icon it actually resolves.
-            if (SHGetFileInfo(drive, 0, out info, (uint)Marshal.SizeOf(typeof(ShellFileInfo)), 0x00001000) == IntPtr.Zero)
-                throw new InvalidOperationException("Windows could not resolve the icon for " + drive);
+            if (SHGetFileInfo(path, 0, out info, (uint)Marshal.SizeOf(typeof(ShellFileInfo)), 0x00001000) == IntPtr.Zero)
+                throw new InvalidOperationException("Windows could not resolve the icon for " + path);
             return info.Name;
         }
     }

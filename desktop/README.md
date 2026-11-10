@@ -25,6 +25,32 @@ The installer does not change the wallpaper, move personal files, or reapply a
 Windows visual style. The existing Modern Office Pro Windows theme is an external
 prerequisite for that broader Explorer appearance.
 
+## Explorer folder icons
+
+`explorer.ps1` applies icon files with Windows 11-style frames at 16, 20 and 24
+pixels, while preserving the existing blue artwork byte-for-byte at 32 pixels
+and larger. This changes small icons, including the sidebar and Details view;
+it is a size-based distinction rather than a sidebar-only setting. At high DPI,
+the sidebar can request larger frames and therefore use the blue artwork.
+
+Desktop, Downloads, Documents, Pictures, Music and Videos use per-user
+`Software\Classes\CLSID` overrides. Other folders keep their existing small blue
+icons. Personal folders and their
+`desktop.ini` files are left intact. Previous registry values are backed up once
+in `%LOCALAPPDATA%\windows-dotfiles\backups\explorer-classes-before.json`.
+After refreshing, the installer verifies each existing known folder's actual
+Shell icon location before reporting success.
+
+Folder-content previews are disabled using the per-user `AllFolders\Shell\Logo`
+setting. This avoids thumbnail layers protruding below the flat folder artwork.
+Image/video file thumbnails remain enabled. The mechanism is the same one used
+by Windhawk Resource Redirect's **Disable folder thumbnails** option.
+
+`folders/frames.json` records each frame's content hash. Large frames are retained
+from the existing Modern Office Pro blue icons; small frames come from the
+already-installed **Windows 11 Icons Theme by niivu (March 2026)**. Those assets
+retain their original ownership and are not relicensed under MIT.
+
 ## Asset provenance
 
 `cursors/` preserves the exact cursor assets selected on this workstation from
