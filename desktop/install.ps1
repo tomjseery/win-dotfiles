@@ -60,17 +60,17 @@ foreach ($drive in $fixedDrives) {
     Set-Item -LiteralPath $key -Value ('"{0}",0' -f $icon)
 }
 
-if (-not ('WindowsDotfiles.DesktopNative' -as [type])) {
+if (-not ('WindowsDotfiles.DesktopNativeV2' -as [type])) {
     Add-Type -Path (Join-Path $PSScriptRoot 'DesktopNative.cs')
 }
-if (-not [WindowsDotfiles.DesktopNative]::ReloadCursors()) { throw 'Windows could not reload the saved cursor scheme.' }
-[WindowsDotfiles.DesktopNative]::RefreshIcons()
+if (-not [WindowsDotfiles.DesktopNativeV2]::ReloadCursors()) { throw 'Windows could not reload the saved cursor scheme.' }
+[WindowsDotfiles.DesktopNativeV2]::RefreshIcons()
 foreach ($drive in $fixedDrives) {
     $letter = $drive.Name.Substring(0, 1)
     $file = if ($letter -eq $systemLetter) { $settings.driveIcons.system } else { $settings.driveIcons.fixed }
     $expected = Join-Path $destination "icons/$file"
-    [WindowsDotfiles.DesktopNative]::RefreshItem($drive.Name)
-    $actual = [WindowsDotfiles.DesktopNative]::GetIconLocation($drive.Name)
+    [WindowsDotfiles.DesktopNativeV2]::RefreshItem($drive.Name)
+    $actual = [WindowsDotfiles.DesktopNativeV2]::GetIconLocation($drive.Name)
     if (-not [string]::Equals($actual, $expected, [StringComparison]::OrdinalIgnoreCase)) {
         throw "Explorer still resolves $($drive.Name) to '$actual' instead of '$expected'."
     }

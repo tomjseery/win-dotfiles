@@ -58,14 +58,14 @@ foreach ($entry in $entries) {
     try { $key.SetValue($entry.name, $entry.value, [Microsoft.Win32.RegistryValueKind]::String) } finally { $key.Dispose() }
 }
 
-if (-not ('WindowsDotfiles.DesktopNative' -as [type])) { Add-Type -Path (Join-Path $PSScriptRoot 'DesktopNative.cs') }
-[WindowsDotfiles.DesktopNative]::RefreshIcons()
+if (-not ('WindowsDotfiles.DesktopNativeV2' -as [type])) { Add-Type -Path (Join-Path $PSScriptRoot 'DesktopNative.cs') }
+[WindowsDotfiles.DesktopNativeV2]::RefreshIcons()
 foreach ($role in $classes.Keys) {
     $folder = $rolePaths[$role]
     if (-not $folder -or -not (Test-Path -LiteralPath $folder -PathType Container)) { continue }
-    [WindowsDotfiles.DesktopNative]::RefreshItem($folder)
+    [WindowsDotfiles.DesktopNativeV2]::RefreshItem($folder)
     $expected = Join-Path $destination "$role.ico"
-    $actual = [WindowsDotfiles.DesktopNative]::GetIconLocation($folder)
+    $actual = [WindowsDotfiles.DesktopNativeV2]::GetIconLocation($folder)
     if ($actual -ine $expected) { throw "Explorer did not resolve the $role icon: $actual" }
 }
 Write-Host 'Explorer: small Windows 11 icons and existing large blue icons applied; folder-content previews disabled.'
