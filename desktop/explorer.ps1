@@ -3,8 +3,10 @@
 param()
 
 $ErrorActionPreference = 'Stop'
-$destination = Join-Path $env:LOCALAPPDATA 'windows-dotfiles/desktop/folders'
 $assets = Join-Path $PSScriptRoot 'folders'
+$assetFingerprint = ((Get-ChildItem -LiteralPath $assets -Filter '*.ico' -File | Sort-Object Name | Get-FileHash -Algorithm SHA256).Hash -join '')
+$assetVersion = [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData([Text.Encoding]::UTF8.GetBytes($assetFingerprint))).Substring(0, 16).ToLowerInvariant()
+$destination = Join-Path $env:LOCALAPPDATA "windows-dotfiles/desktop/folders/$assetVersion"
 $classes = [ordered]@{
     desktop = '{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}'
     downloads = '{088e3905-0323-4b02-9826-5d99428e115f}'
