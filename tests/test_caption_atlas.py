@@ -138,3 +138,20 @@ def test_caption_atlas_rejects_modified_source(theme: Path, tmp_path: Path) -> N
     )
     assert result.returncode != 0
     assert "Source atlas fingerprint mismatch" in result.stderr
+
+
+@pytest.mark.skipif(
+    sys.platform != "win32", reason="Windows PowerShell installer boundary"
+)
+def test_caption_installer_recovers_interrupted_persistence(theme: Path) -> None:
+    subprocess.run(
+        [
+            "pwsh",
+            "-NoProfile",
+            "-File",
+            str(theme.parents[1] / "tests/window-controls-install.ps1"),
+        ],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
