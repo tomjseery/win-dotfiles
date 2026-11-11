@@ -28,10 +28,14 @@ Windows can downscale a larger frame instead. Installed asset paths contain a
 content fingerprint to avoid reusing earlier cached images. The installer checks
 the Shell's resolved physical-folder icon paths and requests a Quick access refresh.
 
-OneDrive's physical folder has its own `desktop.ini` icon. `onedrive.ps1` updates
-that entry while retaining other sections and keys. It saves the original bytes
+Music, Videos and OneDrive also have physical-folder `desktop.ini` icon entries.
+`folder-icon.ps1` updates those entries while retaining other sections and keys.
+This is required when a folder's existing entry points directly to another icon
+pack, independently of the namespace overrides. It saves the original bytes
 and attributes once under `%LOCALAPPDATA%\windows-dotfiles\backups`.
-Other personal folders' `desktop.ini` files are untouched.
+Other personal folders' `desktop.ini` files are untouched. Existing OneDrive
+backup journals are moved to the general folder-icon naming without replacing
+their saved original bytes.
 
 Previous per-user registry entries are retained in
 `%LOCALAPPDATA%\windows-dotfiles\backups\explorer-classes-before.json`.

@@ -10,7 +10,7 @@ desktop/
   settings.json           desktop preferences and cursor role mapping
   explorer.ps1            small Windows 11 icons, large blue icons, clean folders
   reset-thumbnails.ps1    optional cache rebuild with an Explorer reload
-  onedrive.ps1            preserve and update the physical OneDrive folder icon
+  folder-icon.ps1         update physical folder icons while preserving settings
 taskbar/
   install.ps1             ExplorerPatcher and TranslucentTB
   TranslucentTB.cfg       existing centered, translucent taskbar appearance

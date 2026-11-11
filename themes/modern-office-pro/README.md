@@ -17,7 +17,8 @@ blue 32-pixel-and-larger folder artwork. Music and Videos use the blue pack's
 icons by size, including Details view, rather than by Explorer pane.
 
 The OneDrive variant uses the exact native-size blue folder at 32 pixels and
-above, with a cloud composited inside its lower-right face. Its small frames use
+above, with a blue cloud outline inside its lower-right face, matching the other
+folder badges. The cloud's interior retains the original folder pixels. Its small frames use
 the standalone cloud glyph. The Python script performs deterministic compositing;
 no image generation is involved.
 

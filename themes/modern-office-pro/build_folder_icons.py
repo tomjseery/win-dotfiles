@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
-from PIL import IcoImagePlugin, Image
+from PIL import IcoImagePlugin, Image, ImageChops, ImageFilter
 
 SIZES = (256, 64, 48, 40, 32, 24, 20, 16)
 
@@ -197,7 +197,13 @@ def build_onedrive(sources: Path) -> list[IconFrame]:
             badge = native_image(cloud, 256).resize(
                 (badge_size, badge_size), Image.Resampling.LANCZOS
             )
-            image.alpha_composite(badge, (round(size * 0.61), round(size * 0.54)))
+            alpha = badge.getchannel("A")
+            stroke = max(1, round(size * 0.018))
+            solid = alpha.point([0] * 128 + [255] * 128)
+            inner = solid.filter(ImageFilter.MinFilter(stroke * 2 + 1))
+            outline = Image.new("RGBA", badge.size, (36, 98, 215, 0))
+            outline.putalpha(ImageChops.multiply(alpha, ImageChops.invert(inner)))
+            image.alpha_composite(outline, (round(size * 0.61), round(size * 0.54)))
             selected.append(IconFrame(size, png(image)))
     return selected
 
@@ -228,7 +234,7 @@ def rebuild(root: Path) -> None:
         Asset(
             "onedrive.ico",
             "sources/folder-blue.ico + sources/onedrive-cloud.ico "
-            "(Python corner badge)",
+            "(Python outline corner badge)",
             "sources/onedrive-cloud.ico",
         )
     )

@@ -1,6 +1,6 @@
 #Requires -Version 7.2
 $ErrorActionPreference = 'Stop'
-$installer = Join-Path $PSScriptRoot '../desktop/onedrive.ps1'
+$installer = Join-Path $PSScriptRoot '../desktop/folder-icon.ps1'
 $tempParent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath())
 $fixture = Join-Path $tempParent ('win-dotfiles-onedrive-' + [guid]::NewGuid().ToString('N'))
 $oldLocalAppData = $env:LOCALAPPDATA
@@ -26,7 +26,7 @@ try {
     $first = [Convert]::ToBase64String([IO.File]::ReadAllBytes($ini))
     & $installer -FolderPath $folder -IconPath $icon
     if ([Convert]::ToBase64String([IO.File]::ReadAllBytes($ini)) -cne $first) { throw 'Reinstallation changed desktop.ini.' }
-    Write-Host 'OneDrive installer: dry run, settings/attributes preservation, backup and repeatability passed.'
+    Write-Host 'Folder icon installer: dry run, settings/attributes preservation, backup and repeatability passed.'
 } finally {
     $env:LOCALAPPDATA = $oldLocalAppData
     $resolved = [IO.Path]::GetFullPath($fixture)
