@@ -1,12 +1,13 @@
 """Rebuild local folder variants from the credited ICO sources."""
 
+import binascii
 import hashlib
 import json
 import struct
 import sys
+import zlib
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
-from io import BytesIO
 from pathlib import Path
 from typing import cast
 
@@ -138,10 +139,39 @@ def write_ico(path: Path, selected: Sequence[IconFrame]) -> None:
     path.write_bytes(struct.pack("<HHH", 0, 1, len(selected)) + directory + payloads)
 
 
+def png_chunk(kind: bytes, payload: bytes) -> bytes:
+    return (
+        struct.pack(">I", len(payload))
+        + kind
+        + payload
+        + struct.pack(">I", binascii.crc32(kind + payload))
+    )
+
+
 def png(image: Image.Image) -> bytes:
-    with BytesIO() as output:
-        image.save(output, format="PNG")
-        return output.getvalue()
+    # Stored DEFLATE blocks avoid platform-specific zlib compression choices.
+    # The small icon pack favors identical output over compression ratio.
+    rgba = image.convert("RGBA")
+    stride = rgba.width * 4
+    pixels = rgba.tobytes()
+    rows = b"".join(
+        b"\0" + pixels[offset : offset + stride]
+        for offset in range(0, len(pixels), stride)
+    )
+    compressed = bytearray(b"\x78\x01")
+    for offset in range(0, len(rows), 65535):
+        block = rows[offset : offset + 65535]
+        final = int(offset + len(block) == len(rows))
+        compressed += struct.pack("<BHH", final, len(block), len(block) ^ 0xFFFF)
+        compressed += block
+    compressed += struct.pack(">I", zlib.adler32(rows))
+    header = struct.pack(">IIBBBBB", rgba.width, rgba.height, 8, 6, 0, 0, 0)
+    return (
+        b"\x89PNG\r\n\x1a\n"
+        + png_chunk(b"IHDR", header)
+        + png_chunk(b"IDAT", bytes(compressed))
+        + png_chunk(b"IEND", b"")
+    )
 
 
 def native_image(icon: Image.Image, size: int) -> Image.Image:
