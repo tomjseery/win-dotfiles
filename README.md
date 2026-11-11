@@ -1,17 +1,16 @@
 # win-dotfiles
 
 Personal Windows 10 configuration, split into independently installable modules.
-Each folder owns its settings, assets and PowerShell installer.
+Each module owns its settings and PowerShell installer. Visual assets are grouped
+by source theme under `themes/`.
 
 ```text
 desktop/
   install.ps1             icon arrangement, cursor scheme and drive icons
   settings.json           desktop preferences and cursor role mapping
-  cursors/                saved Modern Office Pro cursor files
-  icons/                  Windows 11 drive icons
   explorer.ps1            small Windows 11 icons, large blue icons, clean folders
   reset-thumbnails.ps1    optional cache rebuild with an Explorer reload
-  folders/                size-specific folder icon variants
+  onedrive.ps1            preserve and update the physical OneDrive folder icon
 taskbar/
   install.ps1             ExplorerPatcher and TranslucentTB
   TranslucentTB.cfg       existing centered, translucent taskbar appearance
@@ -20,6 +19,9 @@ terminal/
   windows-terminal.json   Graphite colour scheme, tabs and typography
   starship.toml           compact white two-line prompt
   profile.ps1             managed PowerShell styling fragment
+themes/
+  modern-office-pro/      blue folders, cursors, source artwork and icon builder
+  windows-11/             Windows 11 drive icons and provenance
 install.ps1               select one or more modules
 ```
 
@@ -55,6 +57,7 @@ Desktop alignment, cursors and drive icons update without restarting Explorer.
 - [Desktop configuration and asset provenance](desktop/README.md)
 - [Terminal configuration and merge behaviour](terminal/README.md)
 - [Taskbar configuration](taskbar/README.md)
+- [Theme assets, source links and rebuilding](themes/README.md)
 
 Personal files and desktop shortcuts are not stored here or moved by installers.
 Desktop cleanup is a separate, reversible housekeeping operation.
@@ -64,4 +67,4 @@ Neovim configuration stays in its own repository.
 
 Original scripts are [MIT licensed](LICENSE). Third-party cursor and Windows icon
 assets retain their original ownership and terms; MIT does not relicense them.
-See the desktop asset provenance.
+See the [theme provenance](themes/README.md).

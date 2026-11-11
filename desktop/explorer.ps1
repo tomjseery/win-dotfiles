@@ -3,7 +3,7 @@
 param()
 
 $ErrorActionPreference = 'Stop'
-$assets = Join-Path $PSScriptRoot 'folders'
+$assets = Join-Path $PSScriptRoot '../themes/modern-office-pro/icons/folders'
 $assetFingerprint = ((Get-ChildItem -LiteralPath $assets -Filter '*.ico' -File | Sort-Object Name | Get-FileHash -Algorithm SHA256).Hash -join '')
 $assetVersion = [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData([Text.Encoding]::UTF8.GetBytes($assetFingerprint))).Substring(0, 16).ToLowerInvariant()
 $destination = Join-Path $env:LOCALAPPDATA "windows-dotfiles/desktop/folders/$assetVersion"
@@ -22,6 +22,12 @@ $rolePaths = [ordered]@{
     pictures = [Environment]::GetFolderPath('MyPictures')
     music = [Environment]::GetFolderPath('MyMusic')
     videos = [Environment]::GetFolderPath('MyVideos')
+}
+$oneDriveClass = '{018D5C66-4533-4307-9B53-224DE2ED1FE6}'
+if (Test-Path -LiteralPath "Registry::HKEY_CLASSES_ROOT\CLSID\$oneDriveClass") {
+    $classes.onedrive = $oneDriveClass
+    $rolePaths.onedrive = (Get-ItemProperty -LiteralPath 'HKCU:\Software\Microsoft\OneDrive\Accounts\Personal' -ErrorAction SilentlyContinue).UserFolder
+    if (-not $rolePaths.onedrive) { $rolePaths.onedrive = if ($env:OneDrive) { $env:OneDrive } else { Join-Path $env:USERPROFILE 'OneDrive' } }
 }
 if (-not $rolePaths.downloads) { $rolePaths.downloads = Join-Path $env:USERPROFILE 'Downloads' }
 foreach ($role in @($rolePaths.Keys)) { $rolePaths[$role] = [Environment]::ExpandEnvironmentVariables($rolePaths[$role]) }
@@ -42,7 +48,8 @@ $entries = @(
 $backupDirectory = Join-Path $env:LOCALAPPDATA 'windows-dotfiles/backups'
 New-Item -ItemType Directory -Path $backupDirectory, $destination -Force | Out-Null
 $snapshotPath = Join-Path $backupDirectory 'explorer-classes-before.json'
-$snapshot = if (Test-Path -LiteralPath $snapshotPath) { @(Get-Content -LiteralPath $snapshotPath -Raw | ConvertFrom-Json) } else { @() }
+$snapshot = @()
+if (Test-Path -LiteralPath $snapshotPath) { $snapshot = @(Get-Content -LiteralPath $snapshotPath -Raw | ConvertFrom-Json) }
 $savedKeys = @($snapshot | ForEach-Object { $_.key + '|' + $_.name })
 $missingEntries = @($entries | Where-Object { ($_.key + '|' + $_.name) -notin $savedKeys })
 if ($missingEntries.Count -gt 0) {
@@ -63,6 +70,9 @@ Get-ChildItem -LiteralPath $assets -Filter '*.ico' -File | Copy-Item -Destinatio
 foreach ($entry in $entries) {
     $key = [Microsoft.Win32.Registry]::CurrentUser.CreateSubKey($entry.key)
     try { $key.SetValue($entry.name, $entry.value, [Microsoft.Win32.RegistryValueKind]::String) } finally { $key.Dispose() }
+}
+if ($rolePaths.onedrive) {
+    & (Join-Path $PSScriptRoot 'onedrive.ps1') -FolderPath $rolePaths.onedrive -IconPath (Join-Path $destination 'onedrive.ico')
 }
 
 if (-not ('WindowsDotfiles.DesktopNativeV2' -as [type])) { Add-Type -Path (Join-Path $PSScriptRoot 'DesktopNative.cs') }

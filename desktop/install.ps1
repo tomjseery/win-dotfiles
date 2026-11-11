@@ -5,12 +5,14 @@ param()
 $ErrorActionPreference = 'Stop'
 $settings = Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot 'settings.json') | ConvertFrom-Json -AsHashtable
 $destination = Join-Path $env:LOCALAPPDATA 'windows-dotfiles/desktop'
+$cursorAssets = Join-Path $PSScriptRoot '../themes/modern-office-pro/cursors'
+$driveAssets = Join-Path $PSScriptRoot '../themes/windows-11/icons/drives'
 
 foreach ($file in $settings.cursor.roles.Values) {
-    if (-not (Test-Path -LiteralPath (Join-Path $PSScriptRoot "cursors/$file"))) { throw "Missing cursor: $file" }
+    if (-not (Test-Path -LiteralPath (Join-Path $cursorAssets $file))) { throw "Missing cursor: $file" }
 }
 foreach ($file in $settings.driveIcons.Values) {
-    if (-not (Test-Path -LiteralPath (Join-Path $PSScriptRoot "icons/$file"))) { throw "Missing drive icon: $file" }
+    if (-not (Test-Path -LiteralPath (Join-Path $driveAssets $file))) { throw "Missing drive icon: $file" }
 }
 if ($WhatIfPreference) {
     Write-Host "Would apply desktop auto-arrange/grid settings, cursor/drive icons, and Explorer small/large icon styling into $destination."
@@ -20,7 +22,8 @@ if ($WhatIfPreference) {
 foreach ($folder in @('cursors', 'icons')) {
     $target = Join-Path $destination $folder
     New-Item -ItemType Directory -Path $target -Force | Out-Null
-    Get-ChildItem -LiteralPath (Join-Path $PSScriptRoot $folder) -File |
+    $source = if ($folder -eq 'cursors') { $cursorAssets } else { $driveAssets }
+    Get-ChildItem -LiteralPath $source -File |
         Copy-Item -Destination $target -Force
 }
 
