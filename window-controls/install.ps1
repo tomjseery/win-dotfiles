@@ -30,11 +30,12 @@ function Set-ThemeFilePath([string]$Path) {
 
 if ($Restore) {
     if ($null -eq $state) { throw 'No saved original theme exists.' }
-    if ($current[0] -eq $state.original.path) { Write-Output 'Original style is already active.'; return }
-    if ($current[0] -ne $state.applied.path) { throw 'Another visual style is active; refusing to replace it.' }
+    if ($current[0] -notin @($state.original.path, $state.applied.path)) { throw 'Another visual style is active; refusing to replace it.' }
     Assert-Hash $state.original.path $state.original.sha256
     if ($PSCmdlet.ShouldProcess($state.original.path, 'Restore original visual style')) {
-        [WindowsDotfiles.ThemeNativeV1]::Apply($state.original.path, $state.original.color, $state.original.size)
+        if ($current[0] -ne $state.original.path) {
+            [WindowsDotfiles.ThemeNativeV1]::Apply($state.original.path, $state.original.color, $state.original.size)
+        }
         Set-ThemeFilePath $state.original.theme_file
         Write-Output 'Restored the original visual style.'
     }
@@ -45,6 +46,10 @@ if ($null -ne $state -and $current[0] -eq $state.applied.path) {
     Assert-Hash $state.applied.path $state.applied.sha256
     if ($state.applied.atlas_sha256 -ne $settings.output_atlas_sha256) {
         throw 'Restore the previous variant before installing changed glyph artwork.'
+    }
+    if (-not (Test-Path -LiteralPath $state.applied.theme_file -PathType Leaf)) { throw 'The saved Klassy theme file is missing.' }
+    if (-not $PrepareOnly -and $PSCmdlet.ShouldProcess($state.applied.theme_file, 'Reconcile saved Klassy theme reference')) {
+        Set-ThemeFilePath $state.applied.theme_file
     }
     Write-Output 'Klassy window controls are already active.'
     return
