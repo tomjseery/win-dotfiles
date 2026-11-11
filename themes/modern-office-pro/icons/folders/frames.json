@@ -282,7 +282,7 @@
     },
     {
       "file": "music.ico",
-      "largeSource": "Modern Office Pro imageres.dll resource 108",
+      "largeSource": "sources/music-blue.ico (Modern Office Pro blue)",
       "smallSource": "Folder Music.ico",
       "frames": [
         {
@@ -337,7 +337,7 @@
     },
     {
       "file": "videos.ico",
-      "largeSource": "Modern Office Pro imageres.dll resource 189",
+      "largeSource": "sources/videos-blue.ico (Modern Office Pro blue)",
       "smallSource": "Folder Videos.ico",
       "frames": [
         {
@@ -386,6 +386,61 @@
           "width": 16,
           "height": 16,
           "sha256": "8f2d4de94788fa00e3c6aa6940b221a0bf319a16a473b3586ae9daf3b4d10f13",
+          "preservedLargeFrame": false
+        }
+      ]
+    },
+    {
+      "file": "onedrive.ico",
+      "largeSource": "sources/folder-blue.ico + sources/onedrive-cloud.ico (Python corner badge)",
+      "smallSource": "sources/onedrive-cloud.ico",
+      "frames": [
+        {
+          "width": 256,
+          "height": 256,
+          "sha256": "64dee70dc6fbd694609923465046c736a065878477b12c06e9f8722a9cde51d8",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "sha256": "a086d9cfce7e91863986297f8294de41d08b30f8a33eb8cdd4d164da058996cf",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 48,
+          "height": 48,
+          "sha256": "3e89c4691bf0caa3db34dc71c22a782b2245e87a42ebd7212c5c1eb97d403359",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 40,
+          "height": 40,
+          "sha256": "836777615ced20dfbf85b80e29748aba43d2fe1f329222ce5215babfdb5d2214",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 32,
+          "height": 32,
+          "sha256": "f89a78616f096257e78c6387ba7fdce50c102470a1556c3700927fd1d8428120",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 24,
+          "height": 24,
+          "sha256": "d04a628f3578846d8a20e9c3952b53ffbd58d027b90ef5206b4e1f28981ead80",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "sha256": "7cc55035bf9b484fc44ec8ab51cacb09cd2284e72e7caa8da36e90545980e7a8",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "sha256": "67a0b7cdf889470d7c2d44ffec216556ab0da1e17acbe2499f885e47b93eb026",
           "preservedLargeFrame": false
         }
       ]
