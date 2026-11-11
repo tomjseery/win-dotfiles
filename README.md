@@ -10,6 +10,7 @@ desktop/
   cursors/                saved Modern Office Pro cursor files
   icons/                  Windows 11 drive icons
   explorer.ps1            small Windows 11 icons, large blue icons, clean folders
+  reset-thumbnails.ps1    optional cache rebuild with an Explorer reload
   folders/                size-specific folder icon variants
 taskbar/
   install.ps1             ExplorerPatcher and TranslucentTB

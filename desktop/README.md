@@ -39,17 +39,35 @@ frame with unspecified depth. Asset paths include a content fingerprint so
 Explorer does not reuse a previous version's cached images.
 
 Desktop, Downloads, Documents, Pictures, Music and Videos use per-user
-`Software\Classes\CLSID` overrides. Other folders keep their existing small blue
+`Software\Classes\CLSID` overrides, covering both modern and legacy namespace
+entries used by Explorer. Other folders keep their existing small blue
 icons. Personal folders and their
 `desktop.ini` files are left intact. Previous registry values are backed up once
 in `%LOCALAPPDATA%\windows-dotfiles\backups\explorer-classes-before.json`.
+Upgrades append backups for newly managed entries before changing them.
 After refreshing, the installer verifies each existing known folder's actual
 Shell icon location before reporting success.
 
 Folder-content previews are disabled using the per-user `AllFolders\Shell\Logo`
-setting. This avoids thumbnail layers protruding below the flat folder artwork.
+value `imageres.dll,-3`, resolved through the existing resource theme. This avoids
+thumbnail layers protruding below the flat folder artwork. The installer notifies
+available Quick access folders and refreshes open Quick access views to request
+updated cached icons and previews.
 Image/video file thumbnails remain enabled. The mechanism is the same one used
 by Windhawk Resource Redirect's **Disable folder thumbnails** option.
+
+Existing cached previews can still show white triangles beneath some folders.
+After installing the icon settings, explicitly reset those caches if needed:
+
+```powershell
+.\desktop\reset-thumbnails.ps1 -WhatIf
+.\desktop\reset-thumbnails.ps1
+```
+
+This backs up the 48/96-pixel thumbnail caches, reloads the current session's
+Explorer, and reopens its folder locations. The taskbar briefly disappears.
+Run after file transfers finish. File thumbnails regenerate normally; original
+files are unaffected. This reset resolved the remaining triangles on this setup.
 
 `folders/frames.json` records each frame's content hash. Large frames are retained
 from the existing Modern Office Pro blue icons; small frames come from the
