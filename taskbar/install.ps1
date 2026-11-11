@@ -1,4 +1,4 @@
-#Requires -RunAsAdministrator
+#Requires -Version 7.2
 <#
 .SYNOPSIS
     Idempotent Windows 10 desktop customization: centered, transparent taskbar via
@@ -10,11 +10,24 @@
 .NOTES
     Run from an elevated PowerShell prompt:
         Set-ExecutionPolicy -Scope Process Bypass -Force
-        .\setup.ps1
+        .\taskbar\install.ps1
 #>
+
+[CmdletBinding(SupportsShouldProcess)]
+param([switch]$RestartExplorer)
 
 $ErrorActionPreference = 'Stop'
 $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
+
+if ($WhatIfPreference) {
+    Write-Host 'Would install ExplorerPatcher and TranslucentTB, then apply centered taskbar settings.'
+    return
+}
+$identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+$principal = [Security.Principal.WindowsPrincipal]::new($identity)
+if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    throw 'Run the taskbar installer in an elevated PowerShell.'
+}
 
 function Install-WingetApp {
     param([string]$Id)
@@ -22,6 +35,7 @@ function Install-WingetApp {
     if (-not $installed) {
         Write-Host "Installing $Id..." -ForegroundColor Cyan
         winget install --id $Id -e --silent --accept-package-agreements --accept-source-agreements
+        if ($LASTEXITCODE -ne 0) { throw "Installation failed: $Id" }
     } else {
         Write-Host "$Id already installed, skipping." -ForegroundColor DarkGray
     }
@@ -51,18 +65,21 @@ if (-not $ttbExisting) {
 
 $ttbConfigDir = "$env:APPDATA\TranslucentTB"
 New-Item -Path $ttbConfigDir -ItemType Directory -Force | Out-Null
-Copy-Item -Path (Join-Path $scriptRoot "config\TranslucentTB.cfg") -Destination "$ttbConfigDir\config.cfg" -Force
+Copy-Item -Path (Join-Path $scriptRoot "TranslucentTB.cfg") -Destination "$ttbConfigDir\config.cfg" -Force
 Write-Host "TranslucentTB: config applied (accent=fluent, clear look)." -ForegroundColor Green
 
 Get-Process TranslucentTB -ErrorAction SilentlyContinue | Stop-Process -Force
 if ($ttbExisting) {
-    Start-Process $ttbExisting
+    Start-Process $ttbExisting -WindowStyle Hidden
     Write-Host "TranslucentTB restarted to apply config." -ForegroundColor Green
 }
 
 # --- 3. Apply ---------------------------------------------------------------
-Write-Host "Restarting Explorer to apply changes..." -ForegroundColor Cyan
-Stop-Process -Name explorer -Force
-Start-Sleep -Seconds 2
+if ($RestartExplorer) {
+    Write-Host "Restarting Explorer to apply changes..." -ForegroundColor Cyan
+    Stop-Process -Name explorer -Force
+} else {
+    Write-Host 'Taskbar settings saved. Sign out and back in, or rerun with -RestartExplorer, to reload ExplorerPatcher.'
+}
 
 Write-Host "`nDone. Taskbar should be centered and transparent." -ForegroundColor Green
