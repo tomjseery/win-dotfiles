@@ -9,11 +9,11 @@ $assetVersion = [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData(
 $destination = Join-Path $env:LOCALAPPDATA "windows-dotfiles/desktop/folders/$assetVersion"
 $classes = [ordered]@{
     desktop = '{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}'
-    downloads = '{088e3905-0323-4b02-9826-5d99428e115f}'
-    documents = '{d3162b92-9365-467a-956b-92703aca08af}'
-    pictures = '{24ad3ad4-a569-4530-98e1-ab02f9417aa8}'
-    music = '{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}'
-    videos = '{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}'
+    downloads = @('{088e3905-0323-4b02-9826-5d99428e115f}', '{374DE290-123F-4565-9164-39C4925E467B}')
+    documents = @('{d3162b92-9365-467a-956b-92703aca08af}', '{A8CDFF1C-4878-43be-B5FD-F8091C1C60D0}', '{450D8FBA-AD25-11D0-98A8-0800361B1103}')
+    pictures = @('{24ad3ad4-a569-4530-98e1-ab02f9417aa8}', '{3ADD1653-EB32-4cb0-BBD7-DFA0ABB5ACCA}')
+    music = @('{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}', '{1CF1260C-4DD0-4ebb-811F-33C572699FDE}')
+    videos = @('{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}', '{A0953C92-50DC-43bf-BE83-3742FED03C9C}')
 }
 $rolePaths = [ordered]@{
     desktop = [Environment]::GetFolderPath('DesktopDirectory')
@@ -33,15 +33,20 @@ if (-not $PSCmdlet.ShouldProcess('Current-user Explorer icons', 'Install small W
 $folderView = 'Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell'
 $entries = @(
     foreach ($role in $classes.Keys) {
-        @{ key = "Software\Classes\CLSID\$($classes[$role])\DefaultIcon"; name = ''; value = (Join-Path $destination "$role.ico") + ',0' }
+        foreach ($classId in $classes[$role]) {
+            @{ key = "Software\Classes\CLSID\$classId\DefaultIcon"; name = ''; value = (Join-Path $destination "$role.ico") + ',0' }
+        }
     }
-    @{ key = $folderView; name = 'Logo'; value = (Join-Path $destination 'folder.ico') + ',0' }
+    @{ key = $folderView; name = 'Logo'; value = 'imageres.dll,-3' }
 )
 $backupDirectory = Join-Path $env:LOCALAPPDATA 'windows-dotfiles/backups'
 New-Item -ItemType Directory -Path $backupDirectory, $destination -Force | Out-Null
 $snapshotPath = Join-Path $backupDirectory 'explorer-classes-before.json'
-if (-not (Test-Path -LiteralPath $snapshotPath)) {
-    $snapshot = foreach ($entry in $entries) {
+$snapshot = if (Test-Path -LiteralPath $snapshotPath) { @(Get-Content -LiteralPath $snapshotPath -Raw | ConvertFrom-Json) } else { @() }
+$savedKeys = @($snapshot | ForEach-Object { $_.key + '|' + $_.name })
+$missingEntries = @($entries | Where-Object { ($_.key + '|' + $_.name) -notin $savedKeys })
+if ($missingEntries.Count -gt 0) {
+    $snapshot = @($snapshot) + @(foreach ($entry in $missingEntries) {
         $key = [Microsoft.Win32.Registry]::CurrentUser.OpenSubKey($entry.key)
         try {
             $exists = $key -and ($key.GetValueNames() -contains $entry.name)
@@ -51,7 +56,7 @@ if (-not (Test-Path -LiteralPath $snapshotPath)) {
                 kind = if ($exists) { $key.GetValueKind($entry.name).ToString() } else { $null }
             }
         } finally { if ($key) { $key.Dispose() } }
-    }
+    })
     $snapshot | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $snapshotPath -Encoding utf8NoBOM
 }
 Get-ChildItem -LiteralPath $assets -Filter '*.ico' -File | Copy-Item -Destination $destination -Force
@@ -70,4 +75,18 @@ foreach ($role in $classes.Keys) {
     $actual = [WindowsDotfiles.DesktopNativeV2]::GetIconLocation($folder)
     if ($actual -ine $expected) { throw "Explorer did not resolve the $role icon: $actual" }
 }
-Write-Host 'Explorer: small Windows 11 icons and existing large blue icons applied; folder-content previews disabled.'
+$shell = New-Object -ComObject Shell.Application
+$quickAccess = $shell.Namespace('shell:::{679f85cb-0220-4080-b29b-5540cc05aab6}')
+if ($quickAccess) {
+    foreach ($item in @($quickAccess.Items())) {
+        if ($item.IsFolder -and (Test-Path -LiteralPath $item.Path -PathType Container)) {
+            [WindowsDotfiles.DesktopNativeV2]::RefreshItem($item.Path)
+        }
+    }
+}
+foreach ($window in @($shell.Windows())) {
+    try {
+        if ($window.Document.Folder.Self.Path -eq '::{679F85CB-0220-4080-B29B-5540CC05AAB6}') { $window.Refresh() }
+    } catch { Write-Verbose 'An Explorer window closed during refresh.' }
+}
+Write-Host 'Explorer: folder icon settings installed and Quick access refresh requested.'
