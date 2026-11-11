@@ -40,7 +40,7 @@ raises-require-match-for = ["*"]
 strict = true
 warn_unreachable = true
 enable_error_code = ["ignore-without-code", "exhaustive-match"]
-files = ["themes/modern-office-pro/build_folder_icons.py", "tests"]
+files = ["themes/modern-office-pro/build_folder_icons.py", "themes/klassy/build_atlas.py", "tests"]
 
 [tool.pytest]
 strict = true

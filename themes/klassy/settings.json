@@ -1,0 +1,377 @@
+{
+  "base_style": "Modern Office Pro/Modern Office Pro - dark.msstyles",
+  "base_sha256": "aa6c47ccec2e2e9a1a017a19e013182ea0f0d6d2bdb7c118b2b167e0cf53d810",
+  "source_atlas_sha256": "086ee65cc7fd9962f28d9c636d06e54c0c448b0a706a728775a9af31277d693f",
+  "atlas_resource": 1718,
+  "atlas_width": 195,
+  "atlas_height": 1297,
+  "editor_version": "2.1.2.0",
+  "editor_url": "https://github.com/nptr/msstyleEditor/releases/download/2.1.2.0/msstyleEditor.zip",
+  "editor_sha256": "a08d8316b40f52bd880272daec449a47a01cc98dd7ef35cafcfb35ce72e080a4",
+  "editor_exe_sha256": "21421e25bcbdfe33d58bfd36ee22eeb8003f29cb8c9f0b549eb40ef94371cc76",
+  "klassy_commit": "9b788b2ea8d40c6a7af3b0130de9e891d41fbb30",
+  "profile_commit": "5790ca1495e88b069b1b60aa3fa20e17f5554e93",
+  "parts": [
+    {
+      "name": "BUTTONCLOSEGLYPH96",
+      "part_id": 11,
+      "left": 88,
+      "top": 1181,
+      "right": 102,
+      "bottom": 1237,
+      "count": 4
+    },
+    {
+      "name": "BUTTONCLOSEGLYPH120",
+      "part_id": 12,
+      "left": 51,
+      "top": 1109,
+      "right": 68,
+      "bottom": 1177,
+      "count": 4
+    },
+    {
+      "name": "BUTTONCLOSEGLYPH144",
+      "part_id": 13,
+      "left": 63,
+      "top": 1029,
+      "right": 84,
+      "bottom": 1109,
+      "count": 4
+    },
+    {
+      "name": "BUTTONCLOSEGLYPH192",
+      "part_id": 14,
+      "left": 116,
+      "top": 717,
+      "right": 141,
+      "bottom": 805,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMAXGLYPH96",
+      "part_id": 19,
+      "left": 170,
+      "top": 1109,
+      "right": 186,
+      "bottom": 1165,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMAXGLYPH120",
+      "part_id": 20,
+      "left": 85,
+      "top": 1109,
+      "right": 102,
+      "bottom": 1177,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMAXGLYPH144",
+      "part_id": 21,
+      "left": 0,
+      "top": 1029,
+      "right": 21,
+      "bottom": 1109,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMAXGLYPH192",
+      "part_id": 22,
+      "left": 167,
+      "top": 425,
+      "right": 192,
+      "bottom": 513,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMINGLYPH96",
+      "part_id": 23,
+      "left": 130,
+      "top": 1181,
+      "right": 144,
+      "bottom": 1237,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMINGLYPH120",
+      "part_id": 24,
+      "left": 34,
+      "top": 1109,
+      "right": 51,
+      "bottom": 1177,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMINGLYPH144",
+      "part_id": 25,
+      "left": 167,
+      "top": 1029,
+      "right": 187,
+      "bottom": 1109,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMINGLYPH192",
+      "part_id": 26,
+      "left": 116,
+      "top": 805,
+      "right": 141,
+      "bottom": 893,
+      "count": 4
+    },
+    {
+      "name": "BUTTONRESTOREGLYPH96",
+      "part_id": 27,
+      "left": 60,
+      "top": 1181,
+      "right": 74,
+      "bottom": 1237,
+      "count": 4
+    },
+    {
+      "name": "BUTTONRESTOREGLYPH120",
+      "part_id": 28,
+      "left": 136,
+      "top": 1109,
+      "right": 153,
+      "bottom": 1177,
+      "count": 4
+    },
+    {
+      "name": "BUTTONRESTOREGLYPH144",
+      "part_id": 29,
+      "left": 105,
+      "top": 1029,
+      "right": 126,
+      "bottom": 1109,
+      "count": 4
+    },
+    {
+      "name": "BUTTONRESTOREGLYPH192",
+      "part_id": 30,
+      "left": 167,
+      "top": 601,
+      "right": 192,
+      "bottom": 689,
+      "count": 4
+    },
+    {
+      "name": "SMALLBUTTONCLOSEGLYPH96",
+      "part_id": 38,
+      "left": 186,
+      "top": 1109,
+      "right": 195,
+      "bottom": 1145,
+      "count": 4
+    },
+    {
+      "name": "SMALLBUTTONCLOSEGLYPH120",
+      "part_id": 39,
+      "left": 170,
+      "top": 1181,
+      "right": 181,
+      "bottom": 1225,
+      "count": 4
+    },
+    {
+      "name": "SMALLBUTTONCLOSEGLYPH144",
+      "part_id": 40,
+      "left": 144,
+      "top": 1181,
+      "right": 157,
+      "bottom": 1233,
+      "count": 4
+    },
+    {
+      "name": "SMALLBUTTONCLOSEGLYPH192",
+      "part_id": 41,
+      "left": 30,
+      "top": 1181,
+      "right": 45,
+      "bottom": 1241,
+      "count": 4
+    },
+    {
+      "name": "BUTTONCLOSEGLYPH96DARK",
+      "part_id": 64,
+      "left": 116,
+      "top": 1181,
+      "right": 130,
+      "bottom": 1237,
+      "count": 4
+    },
+    {
+      "name": "BUTTONCLOSEGLYPH120DARK",
+      "part_id": 65,
+      "left": 119,
+      "top": 1109,
+      "right": 136,
+      "bottom": 1177,
+      "count": 4
+    },
+    {
+      "name": "BUTTONCLOSEGLYPH144DARK",
+      "part_id": 66,
+      "left": 21,
+      "top": 1029,
+      "right": 42,
+      "bottom": 1109,
+      "count": 4
+    },
+    {
+      "name": "BUTTONCLOSEGLYPH192DARK",
+      "part_id": 67,
+      "left": 167,
+      "top": 777,
+      "right": 192,
+      "bottom": 865,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMAXGLYPH96DARK",
+      "part_id": 72,
+      "left": 179,
+      "top": 193,
+      "right": 195,
+      "bottom": 249,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMAXGLYPH120DARK",
+      "part_id": 73,
+      "left": 153,
+      "top": 1109,
+      "right": 170,
+      "bottom": 1177,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMAXGLYPH144DARK",
+      "part_id": 74,
+      "left": 42,
+      "top": 1029,
+      "right": 63,
+      "bottom": 1109,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMAXGLYPH192DARK",
+      "part_id": 75,
+      "left": 167,
+      "top": 513,
+      "right": 192,
+      "bottom": 601,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMINGLYPH96DARK",
+      "part_id": 76,
+      "left": 74,
+      "top": 1181,
+      "right": 88,
+      "bottom": 1237,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMINGLYPH120DARK",
+      "part_id": 77,
+      "left": 68,
+      "top": 1109,
+      "right": 85,
+      "bottom": 1177,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMINGLYPH144DARK",
+      "part_id": 78,
+      "left": 147,
+      "top": 1029,
+      "right": 167,
+      "bottom": 1109,
+      "count": 4
+    },
+    {
+      "name": "BUTTONMINGLYPH192DARK",
+      "part_id": 79,
+      "left": 167,
+      "top": 337,
+      "right": 192,
+      "bottom": 425,
+      "count": 4
+    },
+    {
+      "name": "BUTTONRESTOREGLYPH96DARK",
+      "part_id": 80,
+      "left": 102,
+      "top": 1181,
+      "right": 116,
+      "bottom": 1237,
+      "count": 4
+    },
+    {
+      "name": "BUTTONRESTOREGLYPH120DARK",
+      "part_id": 81,
+      "left": 102,
+      "top": 1109,
+      "right": 119,
+      "bottom": 1177,
+      "count": 4
+    },
+    {
+      "name": "BUTTONRESTOREGLYPH144DARK",
+      "part_id": 82,
+      "left": 167,
+      "top": 945,
+      "right": 188,
+      "bottom": 1025,
+      "count": 4
+    },
+    {
+      "name": "BUTTONRESTOREGLYPH192DARK",
+      "part_id": 83,
+      "left": 116,
+      "top": 893,
+      "right": 141,
+      "bottom": 981,
+      "count": 4
+    },
+    {
+      "name": "SMALLBUTTONCLOSEGLYPH96DARK",
+      "part_id": 84,
+      "left": 186,
+      "top": 1145,
+      "right": 195,
+      "bottom": 1181,
+      "count": 4
+    },
+    {
+      "name": "SMALLBUTTONCLOSEGLYPH120DARK",
+      "part_id": 85,
+      "left": 181,
+      "top": 1181,
+      "right": 192,
+      "bottom": 1225,
+      "count": 4
+    },
+    {
+      "name": "SMALLBUTTONCLOSEGLYPH144DARK",
+      "part_id": 86,
+      "left": 157,
+      "top": 1181,
+      "right": 170,
+      "bottom": 1233,
+      "count": 4
+    },
+    {
+      "name": "SMALLBUTTONCLOSEGLYPH192DARK",
+      "part_id": 87,
+      "left": 15,
+      "top": 1181,
+      "right": 30,
+      "bottom": 1241,
+      "count": 4
+    }
+  ],
+  "output_atlas_sha256": "f6e3eb6f176fe22337615cb3e71b729798c9aaa2e81936641ef95fd5ab049491"
+}

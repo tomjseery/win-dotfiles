@@ -19,15 +19,18 @@ terminal/
   windows-terminal.json   Graphite colour scheme, tabs and typography
   starship.toml           compact white two-line prompt
   profile.ps1             managed PowerShell styling fragment
+window-controls/
+  install.ps1             optional Klassy caption glyphs and explicit restore
 themes/
   modern-office-pro/      blue folders, cursors, source artwork and icon builder
   windows-11/             Windows 11 drive icons and provenance
+  klassy/                 caption artwork, builder and pinned source metadata
 install.ps1               select one or more modules
 ```
 
 ## Install
 
-Use PowerShell 7.2 or newer on Windows 10. Preview all modules without changing
+Use PowerShell 7.2 or newer on Windows 10. Preview the default modules without changing
 files, settings or packages:
 
 ```powershell
@@ -48,7 +51,7 @@ needs elevation and winget; run it in an elevated PowerShell:
 .\taskbar\install.ps1
 ```
 
-`./install.ps1` selects all modules and therefore needs elevation. Taskbar changes
+`./install.ps1` selects desktop, taskbar and terminal and therefore needs elevation. Taskbar changes
 reload at sign-in; `-RestartExplorer` explicitly reloads Explorer immediately.
 Desktop alignment, cursors and drive icons update without restarting Explorer.
 
@@ -57,6 +60,7 @@ Desktop alignment, cursors and drive icons update without restarting Explorer.
 - [Desktop configuration and asset provenance](desktop/README.md)
 - [Terminal configuration and merge behaviour](terminal/README.md)
 - [Taskbar configuration](taskbar/README.md)
+- [Optional Klassy window controls and rollback](window-controls/README.md)
 - [Theme assets, source links and rebuilding](themes/README.md)
 
 Personal files and desktop shortcuts are not stored here or moved by installers.
@@ -65,6 +69,7 @@ Neovim configuration stays in its own repository.
 
 ## License
 
-Original scripts are [MIT licensed](LICENSE). Third-party cursor and Windows icon
+Original scripts are [MIT licensed](LICENSE), except the explicitly licensed
+Klassy geometry adaptation. Third-party cursor and Windows icon
 assets retain their original ownership and terms; MIT does not relicense them.
 See the [theme provenance](themes/README.md).
