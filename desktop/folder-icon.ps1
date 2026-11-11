@@ -7,8 +7,8 @@ param(
 
 $ErrorActionPreference = 'Stop'
 if (-not (Test-Path -LiteralPath $FolderPath -PathType Container)) { return }
-if (-not (Test-Path -LiteralPath $IconPath -PathType Leaf)) { throw 'OneDrive icon is missing.' }
-if (-not $PSCmdlet.ShouldProcess($FolderPath, 'Set the OneDrive folder icon while retaining other desktop.ini settings')) { return }
+if (-not (Test-Path -LiteralPath $IconPath -PathType Leaf)) { throw 'Folder icon is missing.' }
+if (-not $PSCmdlet.ShouldProcess($FolderPath, 'Set the folder icon while retaining other desktop.ini settings')) { return }
 $ini = Join-Path $FolderPath 'desktop.ini'
 $exists = Test-Path -LiteralPath $ini -PathType Leaf
 $attributes = if ($exists) { (Get-Item -LiteralPath $ini -Force).Attributes } else { [IO.FileAttributes]::Normal }
@@ -16,7 +16,11 @@ $directoryAttributes = (Get-Item -LiteralPath $FolderPath -Force).Attributes
 $backupDirectory = Join-Path $env:LOCALAPPDATA 'windows-dotfiles/backups'
 New-Item -ItemType Directory -Path $backupDirectory -Force | Out-Null
 $pathHash = [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData([Text.Encoding]::UTF8.GetBytes([IO.Path]::GetFullPath($FolderPath).ToLowerInvariant()))).Substring(0, 16)
-$backup = Join-Path $backupDirectory "onedrive-folder-$pathHash.json"
+$backup = Join-Path $backupDirectory "folder-icon-$pathHash.json"
+$previousBackup = Join-Path $backupDirectory "onedrive-folder-$pathHash.json"
+if (-not (Test-Path -LiteralPath $backup) -and (Test-Path -LiteralPath $previousBackup)) {
+    Move-Item -LiteralPath $previousBackup -Destination $backup
+}
 if (-not (Test-Path -LiteralPath $backup)) {
     [ordered]@{
         path = $FolderPath; directoryAttributes = [int]$directoryAttributes

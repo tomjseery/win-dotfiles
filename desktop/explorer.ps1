@@ -71,8 +71,10 @@ foreach ($entry in $entries) {
     $key = [Microsoft.Win32.Registry]::CurrentUser.CreateSubKey($entry.key)
     try { $key.SetValue($entry.name, $entry.value, [Microsoft.Win32.RegistryValueKind]::String) } finally { $key.Dispose() }
 }
-if ($rolePaths.onedrive) {
-    & (Join-Path $PSScriptRoot 'onedrive.ps1') -FolderPath $rolePaths.onedrive -IconPath (Join-Path $destination 'onedrive.ico')
+foreach ($role in @('music', 'videos', 'onedrive')) {
+    if ($rolePaths[$role]) {
+        & (Join-Path $PSScriptRoot 'folder-icon.ps1') -FolderPath $rolePaths[$role] -IconPath (Join-Path $destination "$role.ico")
+    }
 }
 
 if (-not ('WindowsDotfiles.DesktopNativeV2' -as [type])) { Add-Type -Path (Join-Path $PSScriptRoot 'DesktopNative.cs') }
@@ -96,7 +98,9 @@ if ($quickAccess) {
 }
 foreach ($window in @($shell.Windows())) {
     try {
-        if ($window.Document.Folder.Self.Path -eq '::{679F85CB-0220-4080-B29B-5540CC05AAB6}') { $window.Refresh() }
+        $viewPath = $window.Document.Folder.Self.Path
+        $affectedView = $viewPath -eq '::{679F85CB-0220-4080-B29B-5540CC05AAB6}' -or $viewPath -ieq $env:USERPROFILE -or $viewPath -in $rolePaths.Values
+        if ($affectedView) { $window.Refresh() }
     } catch { Write-Verbose 'An Explorer window closed during refresh.' }
 }
-Write-Host 'Explorer: folder icon settings installed and Quick access refresh requested.'
+Write-Host 'Explorer: folder icon settings installed and affected folder views refreshed.'

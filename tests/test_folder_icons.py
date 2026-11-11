@@ -266,6 +266,10 @@ def test_onedrive_preserves_folder_outside_badge(theme: Path, size: int) -> None
             if not (left <= x < left + edge and top <= y < top + edge):
                 assert actual.getpixel((x, y)) == base.getpixel((x, y))
     assert actual.tobytes() != base.tobytes()
+    # The cloud's interior stays the original blue folder, like the other
+    # outline badges in this theme, rather than becoming a filled logo.
+    interior = (left + edge // 2, top + round(edge * 0.6))
+    assert actual.getpixel(interior) == base.getpixel(interior)
 
 
 def test_rebuild_preserves_checked_in_bytes(theme: Path, tmp_path: Path) -> None:
