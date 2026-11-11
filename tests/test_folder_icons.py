@@ -272,11 +272,13 @@ def test_rebuild_preserves_checked_in_bytes(theme: Path, tmp_path: Path) -> None
     copied = tmp_path / "theme"
     shutil.copytree(theme, copied)
     expected = {
-        path.name: path.read_bytes() for path in (copied / "icons/folders").iterdir()
+        path.name: hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in (copied / "icons/folders").iterdir()
     }
     subprocess.run([sys.executable, str(copied / "build_folder_icons.py")], check=True)
     assert {
-        path.name: path.read_bytes() for path in (copied / "icons/folders").iterdir()
+        path.name: hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in (copied / "icons/folders").iterdir()
     } == expected
 
 
