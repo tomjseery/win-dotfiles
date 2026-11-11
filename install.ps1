@@ -1,7 +1,7 @@
 #Requires -Version 7.2
 [CmdletBinding(SupportsShouldProcess)]
 param(
-    [ValidateSet('desktop', 'taskbar', 'terminal')]
+    [ValidateSet('desktop', 'taskbar', 'terminal', 'window-controls')]
     [string[]]$Module = @('desktop', 'taskbar', 'terminal'),
     [switch]$RestartExplorer
 )
