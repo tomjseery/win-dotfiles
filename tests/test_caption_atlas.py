@@ -34,16 +34,18 @@ def parts(theme: Path) -> list[Part]:
         "list[dict[str, object]]",
         json.loads((theme / "settings.json").read_text(encoding="utf-8-sig"))["parts"],
     )
-    return [
-        Part(
-            cast("str", row["name"]),
-            *(
-                cast("int", row[key])
-                for key in ("left", "top", "right", "bottom", "count")
-            ),
+    parts = []
+    for row in raw:
+        parts.append(
+            Part(
+                cast("str", row["name"]),
+                *(
+                    cast("int", row[key])
+                    for key in ("left", "top", "right", "bottom", "count")
+                ),
+            )
         )
-        for row in raw
-    ]
+    return parts
 
 
 def test_caption_atlas_preserves_every_pixel_outside_glyphs(
@@ -57,11 +59,8 @@ def test_caption_atlas_preserves_every_pixel_outside_glyphs(
         before, after = source.convert("RGBA"), actual.convert("RGBA")
     modified: set[tuple[int, int]] = set()
     for part in parts:
-        modified.update(
-            (x, y)
-            for y in range(part.top, part.bottom)
-            for x in range(part.left, part.right)
-        )
+        for y in range(part.top, part.bottom):
+            modified.update((x, y) for x in range(part.left, part.right))
     assert len(parts) == 40
     for y in range(before.height):
         for x in range(before.width):

@@ -101,27 +101,25 @@ def read_parts(
             and (part.bottom - part.top) % 4 == 0
         ):
             raise ValueError("Invalid caption glyph rectangle")
-        pixels = {
-            (x, y)
-            for y in range(part.top, part.bottom)
-            for x in range(part.left, part.right)
-        }
+        pixels: set[tuple[int, int]] = set()
+        for y in range(part.top, part.bottom):
+            pixels.update((x, y) for x in range(part.left, part.right))
         if occupied & pixels:
             raise ValueError("Overlapping caption glyph rectangles")
         occupied.update(pixels)
         parts.append(part)
-    expected = {
-        f"{prefix}BUTTON{kind}GLYPH{dpi}{palette}"
-        for prefix, kind in (
-            ("", "CLOSE"),
-            ("", "MIN"),
-            ("", "MAX"),
-            ("", "RESTORE"),
-            ("SMALL", "CLOSE"),
-        )
-        for dpi in (96, 120, 144, 192)
-        for palette in ("", "DARK")
-    }
+    expected: set[str] = set()
+    for prefix, kind in (
+        ("", "CLOSE"),
+        ("", "MIN"),
+        ("", "MAX"),
+        ("", "RESTORE"),
+        ("SMALL", "CLOSE"),
+    ):
+        for dpi in (96, 120, 144, 192):
+            expected.update(
+                f"{prefix}BUTTON{kind}GLYPH{dpi}{palette}" for palette in ("", "DARK")
+            )
     if {part.name for part in parts} != expected or len(parts) != 40:
         raise ValueError("Expected all 40 caption glyph strips")
     return tuple(parts)
