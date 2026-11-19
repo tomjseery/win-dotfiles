@@ -1,0 +1,52 @@
+[project]
+name = "win-dotfiles"
+version = "0.1.0"
+description = "Windows desktop configuration and folder icon tooling"
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=13.0.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.1",
+    "pytest>=9.1.1",
+    "pytest-socket>=0.7.0",
+    "ruff>=0.17.4",
+]
+
+[tool.ruff.lint]
+preview = true
+explicit-preview-rules = true
+select = [
+    "E", "W", "F", "I", "N", "UP", "B", "A", "BLE", "C4", "SIM", "PTH", "PIE", "RET", "RUF",
+    "PGH004", "ANN401", "G004", "PLW1514", "LOG002", "LOG015", "PLC2701", "ICN001",
+    "TID251", "TRY300", "PT009", "PT011", "PT006", "PLR6301",
+]
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+"sys.path" = { msg = "Install the declared dependency; do not modify the import search path." }
+"importlib.util.spec_from_file_location" = { msg = "Import the installed public API; do not load another checkout by path." }
+"unittest.TestCase" = { msg = "Use plain pytest functions and bare assertions." }
+
+[tool.ruff.lint.flake8-pytest-style]
+raises-require-match-for = ["*"]
+
+[tool.mypy]
+strict = true
+warn_unreachable = true
+enable_error_code = ["ignore-without-code", "exhaustive-match"]
+files = ["themes/modern-office-pro/build_folder_icons.py", "tests"]
+
+[tool.pytest]
+strict = true
+testpaths = ["tests"]
+addopts = ["--import-mode=importlib", "--disable-socket", "-ra"]
+filterwarnings = ["error"]
+
+[tool.uv]
+package = false

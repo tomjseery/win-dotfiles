@@ -1,0 +1,449 @@
+{
+  "smallSizes": [
+    16,
+    20,
+    24
+  ],
+  "assets": [
+    {
+      "file": "folder.ico",
+      "largeSource": "Modern Office Pro imageres.dll resource 3",
+      "smallSource": "Folder Blue.ico",
+      "frames": [
+        {
+          "width": 256,
+          "height": 256,
+          "sha256": "2abadf266699ea988ef45438fc8e0aff49f83beb22f2f6b25d141c480859f851",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "sha256": "9a65aace848802b5a7b76651db4a96baa9d114889c0ce1e0b48e89154fbf162e",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 48,
+          "height": 48,
+          "sha256": "1497f96f2e6878cbeb9894f670f60ebd452d661cb9d921ddaa550bb51a59d13a",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 40,
+          "height": 40,
+          "sha256": "44e9e79aff7a9f7b27a69d16e1c7ccbd5a48c251b8e92fd23137d184aa0912fa",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 32,
+          "height": 32,
+          "sha256": "d6efb28b77fd5dbefd5769f1b035e77252509611dc4272377a393a3b5dc2cf6a",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 24,
+          "height": 24,
+          "sha256": "ceb8c1444491c591dbf0b77ca6836c80a83f4f3d7f5b4d352124dd7a0645e9cb",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "sha256": "004be8b8d8be44891a6d477e6020d681ff81455a473a4cbf69cdf0b972d15b0f",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "sha256": "ac19624bfdc07d739e430f04a396204931ef282de0557eb205090f6dae7745bb",
+          "preservedLargeFrame": false
+        }
+      ]
+    },
+    {
+      "file": "desktop.ico",
+      "largeSource": "Modern Office Pro imageres.dll resource 183",
+      "smallSource": "Desktop.ico",
+      "frames": [
+        {
+          "width": 256,
+          "height": 256,
+          "sha256": "d439765719a9b8e984b88a4a5200659f93f3b456aa52800ed10647ce75835e67",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "sha256": "c93e907b4f184a573cefe04a4a0e0d59c7f7fdd8b5f1d2553f38ab4d57f68f9d",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 48,
+          "height": 48,
+          "sha256": "c83ea982ffd20e7bfe537cffec62633d461c77d003fd7d9eed0b5622d36672fc",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 40,
+          "height": 40,
+          "sha256": "2a7d9de095d611eb453771f88904a6a8ab5eb69e8df8221b6b578e1c1a3d57dd",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 32,
+          "height": 32,
+          "sha256": "4ba9e80bd0689fbe476cd0aa6142e9973f7ba9edd18b2162eec3e8ebff2aaa34",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 24,
+          "height": 24,
+          "sha256": "c83d821ad2afa5aee5a696d8d839b2a219f0cceca2370e9f3b3c73984de751b8",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "sha256": "5831928d92788fadb57c61928ec512e9517baabef41f707f9782a5e3ab6d2ba6",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "sha256": "d03f09738aa4772e63e6dcdd27722e28f7a6e1bfa767cb4c0c4e732c5ed50a95",
+          "preservedLargeFrame": false
+        }
+      ]
+    },
+    {
+      "file": "downloads.ico",
+      "largeSource": "Modern Office Pro imageres.dll resource 184",
+      "smallSource": "Folder Downloads.ico",
+      "frames": [
+        {
+          "width": 256,
+          "height": 256,
+          "sha256": "73be4ef8838492e5d1a423eb5b29dac8d582e99aa9b34b261fbeb9fbe69627af",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "sha256": "a2ae5cefd90d5278b242e70141474097a5e08cef25374d01f750a0f49b7a6fac",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 48,
+          "height": 48,
+          "sha256": "8f0293001b7c5a741c4eb60a99412b48a3066f00c4b3d3f39c76e7effaf5ad4c",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 40,
+          "height": 40,
+          "sha256": "e9cf490c515329537829a93789aedbadeeecb00daae01bee88cb2aa47b9006d6",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 32,
+          "height": 32,
+          "sha256": "5fe9a53ae6cb1b7acae6d4756e3fcdbddd2ad8571269d348b5c65eb88f0815b2",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 24,
+          "height": 24,
+          "sha256": "d1fd5fec698caadc94e5ce71ee524bb542a17aab117de32c89f0e7221332a817",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "sha256": "cf7fad57ec4bc58721588c17b5ecc1f4e82a71807336633a1ef33f307ff7bc61",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "sha256": "7d0acad81b3918755c02aa63a0cd05c8c7c98188b2b0bb218e390fe1a62fdb8b",
+          "preservedLargeFrame": false
+        }
+      ]
+    },
+    {
+      "file": "documents.ico",
+      "largeSource": "Modern Office Pro imageres.dll resource 112",
+      "smallSource": "Folder Documents.ico",
+      "frames": [
+        {
+          "width": 256,
+          "height": 256,
+          "sha256": "35ac668cfec9f2ceafae372aef8bb212ad54700285811a67cb73427450b52913",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "sha256": "057ec959f50894ff6e1aa19c8ac7053e9768a2f9a99b6579f88ff10d4a29f0b9",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 48,
+          "height": 48,
+          "sha256": "210d069b65f91858b97545b693d525db0a1524ec6064096d69297dfdfee6d914",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 40,
+          "height": 40,
+          "sha256": "4b93af1d82d49e0c089b26f7abfc0ee6093337ff85a0ab0b95706a172a0d5374",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 32,
+          "height": 32,
+          "sha256": "676a882b636699f9db16e503b98879dd05c3714504caf01ee7a5b3bc283c84ce",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 24,
+          "height": 24,
+          "sha256": "37cc2d721afc3f825d9ba494d4c2db4ec726746781e91e6c8a504b8d99300904",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "sha256": "086a0afd42f990bc9f71ffd397023741393893a6ffb6a1adf3dce4f6de3463ff",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "sha256": "5d5a24b71c8f16e589162b6b71f335a23976e9b40bfe5fdac232e498da005e48",
+          "preservedLargeFrame": false
+        }
+      ]
+    },
+    {
+      "file": "pictures.ico",
+      "largeSource": "Modern Office Pro imageres.dll resource 113",
+      "smallSource": "Folder Pictures.ico",
+      "frames": [
+        {
+          "width": 256,
+          "height": 256,
+          "sha256": "b71a72ec6e4503f2d144852233af7d859ea333937764fc3246d270b4000a7d95",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "sha256": "dd52374dc06cf6ad7309972e2fa0ab4ee3b12b24ecefb5d1846a74c31efe1eac",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 48,
+          "height": 48,
+          "sha256": "a1c8ba47f187fa65388a6017f76910acfa9c3b466b155df07fabfaa0d1ec3d25",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 40,
+          "height": 40,
+          "sha256": "b222c39f564ec78b2a9bfcd49ea12a063460d7150b3763914d1d597385d8099d",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 32,
+          "height": 32,
+          "sha256": "16360a440d10ae859834502e2f3f9af3fe5d8329186a897e7db713643bc46530",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 24,
+          "height": 24,
+          "sha256": "a003f9694cce4204fd70701724a5511b5f963161d687c764ce55d9ed62fcd21a",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "sha256": "4e49adb69c2fc75aa7d2e2e001a8326fe85f848f40d23c4fa81e3c7a76837347",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "sha256": "d4de17fc973df5390788e16d91160a7c1b41bd9f30c67b3be64a623b0810edaf",
+          "preservedLargeFrame": false
+        }
+      ]
+    },
+    {
+      "file": "music.ico",
+      "largeSource": "sources/music-blue.ico (Modern Office Pro blue)",
+      "smallSource": "Folder Music.ico",
+      "frames": [
+        {
+          "width": 256,
+          "height": 256,
+          "sha256": "e5f3e3fe346b789a233039196135df452b413aa032384d1443ee01d58af40f51",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "sha256": "b2c7cc02d2be21216f4d67097d54cee1527016131a94fd33709162d2e4bc8650",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 48,
+          "height": 48,
+          "sha256": "aed124205e5b2439fa5b50df0a61a5f28f02c39054fadfc21768f98beb725bd5",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 40,
+          "height": 40,
+          "sha256": "e17952fc8b9476d476b62a46663a5c9e55e7a63312fd113333adbdef71fc16a8",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 32,
+          "height": 32,
+          "sha256": "89a24dff8f2a58f3090e122313d760d7100ca2cec6fe44756e532575c195dcf5",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 24,
+          "height": 24,
+          "sha256": "ef406bb28e65a66ca4323c000ff55f558f201be3562d1f7d7630f73d08dc6f97",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "sha256": "a5424a777b4e54bb268a0c43e834d8c993ab4e29ebed6aa9e6ac4002c97a8aa1",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "sha256": "99987edd0fafbff903b355ef3abccd329fd647b6573f08a475592d084625a6d6",
+          "preservedLargeFrame": false
+        }
+      ]
+    },
+    {
+      "file": "videos.ico",
+      "largeSource": "sources/videos-blue.ico (Modern Office Pro blue)",
+      "smallSource": "Folder Videos.ico",
+      "frames": [
+        {
+          "width": 256,
+          "height": 256,
+          "sha256": "8c9e354363e81bf93a3c9e6cc2c56e4d905dc1d43ba2243593be791ca58a3566",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "sha256": "95a97190a87c8c744caee45f2a9798e616cb3b42c4eca870f31605f0c9a80f9b",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 48,
+          "height": 48,
+          "sha256": "0585a0379fc89bf49db07eb846786d6f13b005378f935ed1bde78b03a95b4b8a",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 40,
+          "height": 40,
+          "sha256": "85b2796fa3aa734ab5aa02279a081e01dab2ff2a03de2130e447ab62a77906dc",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 32,
+          "height": 32,
+          "sha256": "fa240c4169ee9793c56439fa1dfecf844ddf36bdfb29b01792404f4b7cf12e80",
+          "preservedLargeFrame": true
+        },
+        {
+          "width": 24,
+          "height": 24,
+          "sha256": "d6917cb3bbf7fb30089085310788f55d3c53f8777c765b0eb09371fc393bda47",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "sha256": "9245e196379cfbd7ae79d44e4f7e320c5570743959ca07ad97a3e24da60ba351",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "sha256": "8f2d4de94788fa00e3c6aa6940b221a0bf319a16a473b3586ae9daf3b4d10f13",
+          "preservedLargeFrame": false
+        }
+      ]
+    },
+    {
+      "file": "onedrive.ico",
+      "largeSource": "sources/folder-blue.ico + sources/onedrive-cloud.ico (Python outline corner badge)",
+      "smallSource": "sources/onedrive-cloud.ico",
+      "frames": [
+        {
+          "width": 256,
+          "height": 256,
+          "sha256": "326dc0f49834195e896a00e5aae906b63936f1f92eda902d18d371b35846ec15",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "sha256": "87d57e3aaec4616d78a98bd0678bac7c2c9825c1e695d34e035ee9c37748328a",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 48,
+          "height": 48,
+          "sha256": "1f5bbadbe17cc096987619457e0ab6148f1ba243a753b9785c5a10e8fe8303b3",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 40,
+          "height": 40,
+          "sha256": "1eb01a702e18a95c1f44e8bc37cb7c2e3e9d86c618d0629e1196c8731a393e79",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 32,
+          "height": 32,
+          "sha256": "b4e03b8e56d8dd63f0764cc7d714bbc22bc174891a27af2a4e9ad8f888ec61ab",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 24,
+          "height": 24,
+          "sha256": "d04a628f3578846d8a20e9c3952b53ffbd58d027b90ef5206b4e1f28981ead80",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "sha256": "7cc55035bf9b484fc44ec8ab51cacb09cd2284e72e7caa8da36e90545980e7a8",
+          "preservedLargeFrame": false
+        },
+        {
+          "width": 16,
+          "height": 16,
+          "sha256": "67a0b7cdf889470d7c2d44ffec216556ab0da1e17acbe2499f885e47b93eb026",
+          "preservedLargeFrame": false
+        }
+      ]
+    }
+  ]
+}
